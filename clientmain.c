@@ -8,11 +8,6 @@ int main(int argc, char *argv[]) {
     return 1;
   }
   char *message = malloc(256 * sizeof(char));
-  printf("Enter message: ");
-  if (fgets(message, 256, stdin) == NULL) {
-    printf("ERROR reading message\n");
-    return 1;
-  }
   Start(argv[1], atoi(argv[2]), message);
   return 0;
 }
