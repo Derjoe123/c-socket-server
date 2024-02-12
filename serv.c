@@ -32,12 +32,12 @@ int Start(int port) {
   address.sin_port = htons(port);
 
   if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
-    perror("[C.O.C] ERROR on binding");
+    perror("ERROR on binding");
     exit(1);
   }
-  printf("[C.O.C] Listening on port %d\n", port);
+  printf("Listening on port %d\n", port);
   if (listen(server_fd, 3) < 0) {
-    perror("[C.O.C] ERROR on listen");
+    perror("ERROR on listen");
     exit(1);
   }
 
@@ -45,17 +45,17 @@ int Start(int port) {
       accept(server_fd, (struct sockaddr *)&address, (socklen_t *)&addrlen);
 
   if (new_socket < 0) {
-    perror("[C.O.C] ERROR on accept");
+    perror("ERROR on accept");
     exit(1);
   }
   numBytesRead = read(new_socket, buffer, 1024);
   if (numBytesRead < 0) {
-    perror("[C.O.C] ERROR reading from socket");
+    perror("ERROR reading from socket");
     exit(1);
   }
   printf("%s\n", buffer);
   send(new_socket, hello, strlen(hello), 0);
-  printf("[C.O.C] Hello message sent\n");
+  printf("Hello message sent\n");
   close(new_socket);
   close(server_fd);
   return 0;
